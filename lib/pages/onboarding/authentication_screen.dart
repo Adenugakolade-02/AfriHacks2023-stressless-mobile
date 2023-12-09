@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:stressless/widgets/onboarding/register_widget.dart';
+import 'package:stressless/widgets/onboarding/signin_widget.dart';
 
 class AuthenticationScreen extends StatefulWidget {
   const AuthenticationScreen({super.key});
@@ -9,6 +11,7 @@ class AuthenticationScreen extends StatefulWidget {
 }
 
 class _AuthenticationScreenState extends State<AuthenticationScreen> {
+  bool isSign = true;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -31,11 +34,18 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                   color: Colors.white,
                   borderRadius: BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
                 ),
-                child: Column(
-                  children: [
-                    const SizedBox(height: 36,),
-                    toggleAuthentication()
-                  ],
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        const SizedBox(height: 36,),
+                        toggleAuthentication(),
+                        const SizedBox(height: 55,),
+                        isSign ? const SigninSection() : const RegisterSection()
+                      ],
+                    ),
+                  ),
                 ),
               ),
             )
@@ -48,16 +58,34 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
     return Container(
       height: 52,
       width: 342,
-      padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 5),
+      padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 4),
       decoration: BoxDecoration(
-        color: Color(0xFFE4E4E4),
+        color: const Color(0xFFE4E4E4),
         borderRadius: BorderRadius.circular(1000)
       ),
       child: Row(
         children: [
-          selectedContainer("Sign in"),
+          isSign? selectedContainer("Sign in") : GestureDetector(
+            onTap: (){setState(() {
+              isSign = true;
+            });},
+            child: const Padding(
+              padding:  EdgeInsets.only(left: 25),
+              child: Text("Sign In", style:  TextStyle(fontFamily: "Urbanist", fontSize: 16, fontWeight: FontWeight.w800, color: Color(0xFFFFFFFF)),),
+            ),
+          ),
+
           const Spacer(),
-          const Text("Register", style:  TextStyle(fontFamily: "Urbanist", fontSize: 16, fontWeight: FontWeight.w800, color: Color(0xFFFFFFFF)),)
+
+          !isSign? selectedContainer("Register") : GestureDetector(
+            onTap: (){setState(() {
+              isSign = false;
+            });},
+            child: const Padding(
+              padding:  EdgeInsets.only(right: 25),
+              child:  Text("Register", style:  TextStyle(fontFamily: "Urbanist", fontSize: 16, fontWeight: FontWeight.w800, color: Color(0xFFFFFFFF)),),
+            ),
+          ),
         ],
       ),
     );

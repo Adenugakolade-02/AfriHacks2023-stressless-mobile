@@ -36,7 +36,7 @@ class OnboardingScreen extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text("Get Started"),
-                        const SizedBox(width: 10,),
+                         SizedBox(width: 10,),
                         Icon(Icons.arrow_forward_rounded,)
                       ],
                     )),
