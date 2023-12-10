@@ -13,6 +13,12 @@ class MentalAssessmentOne extends StatefulWidget {
 
 class _MentalAssessmentOneState extends State<MentalAssessmentOne> {
   int? selectedIntValue;
+
+  @override
+  void initState() {
+    selectedIntValue = null;
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -105,9 +111,7 @@ class _MentalAssessmentOneState extends State<MentalAssessmentOne> {
           selected: groupValue == value,
           onTap: (){
             setState(() {
-              groupValue = value;
-              log("Selected");
-              log("$groupValue");
+              selectedIntValue = value;
             });
           },
           trailing: Radio(
@@ -115,8 +119,7 @@ class _MentalAssessmentOneState extends State<MentalAssessmentOne> {
             groupValue: groupValue,
             onChanged: (_){
               setState(() {
-                groupValue = value;
-                log("Selected");
+                selectedIntValue = _;
               });
             },
             activeColor: const Color(0xFF4B4D4C),
