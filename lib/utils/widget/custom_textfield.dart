@@ -39,13 +39,6 @@ class _kTextFormFieldState extends State<kTextFormField> {
                 width: 1
               )
             ),
-            // disabledBorder: OutlineInputBorder(
-            //   borderRadius: BorderRadius.circular(1000),
-            //   borderSide: const BorderSide(
-            //     color: Color(0xFFDADADA),
-            //     width: 1
-            //   )
-            // ),
             prefixIcon: Padding(
               padding: const EdgeInsets.only(left: 8,),
               child : widget.prefixIcon
@@ -69,6 +62,53 @@ class _kTextFormFieldState extends State<kTextFormField> {
           maxLines: widget.maxLines,
         ),
       ],
+    );
+  }
+}
+
+class LongFormField extends StatefulWidget {
+  final TextEditingController controller;
+  const LongFormField({super.key, required this.controller});
+
+  @override
+  State<LongFormField> createState() => _LongFormFieldState();
+}
+
+class _LongFormFieldState extends State<LongFormField> {
+  String _enteredText = '';
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      onChanged: (value) {
+        setState(() {
+          _enteredText = value;
+        });
+        },
+      decoration: InputDecoration(
+      enabledBorder:  OutlineInputBorder(
+        borderRadius: BorderRadius.circular(32),
+        borderSide: const BorderSide(
+          color: Color(0xFFDADADA),
+          width: 1,
+      )
+    ),
+      focusedBorder:   OutlineInputBorder(
+        borderRadius: BorderRadius.circular(32),
+        borderSide: const BorderSide(
+          color: Color(0xFFC9EBDF),
+          width: 1
+        )
+      ),
+      hintText: "Pour your mind here...",
+      hintStyle: const TextStyle(fontFamily: "Urbanist", fontSize: 20, fontWeight: FontWeight.w600, color: Color(0xFFC9C7C5)),
+      counterText: '${_enteredText.length.toString()} / 250',
+      counterStyle: const TextStyle(fontFamily: "Urbanist", fontSize: 16, fontWeight: FontWeight.w600, color: Color(0xFF736B66)),
+      ),
+      cursorColor: const Color(0xFFC9EBDF),
+      controller: widget.controller,
+      maxLength: 250,
+      maxLines: 6,
+
     );
   }
 }

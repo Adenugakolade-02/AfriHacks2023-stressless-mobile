@@ -3,15 +3,15 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class MentalAssessmentOne extends StatefulWidget {
-  const MentalAssessmentOne({super.key});
+class MentalAssessmentFive extends StatefulWidget {
+  const MentalAssessmentFive({super.key});
 
   @override
-  State<MentalAssessmentOne> createState() => _MentalAssessmentOneState();
+  State<MentalAssessmentFive> createState() => _MentalAssessmentFiveState();
   
 }
 
-class _MentalAssessmentOneState extends State<MentalAssessmentOne> {
+class _MentalAssessmentFiveState extends State<MentalAssessmentFive> {
   int? selectedIntValue;
 
   @override
@@ -21,6 +21,7 @@ class _MentalAssessmentOneState extends State<MentalAssessmentOne> {
   }
   @override
   Widget build(BuildContext context) {
+    Size size  = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: const Color(0xFFFFFFFF),
       body: SafeArea(
@@ -30,13 +31,16 @@ class _MentalAssessmentOneState extends State<MentalAssessmentOne> {
             children: [
               topHeader(),
               const SizedBox(height: 32,),
-              const Text("What’s your health goal today?", style: TextStyle(fontFamily: "Urbanist", fontSize: 30, fontWeight: FontWeight.w800, color: Color(0xFF4B4D4C)), textAlign: TextAlign.center,),
+              const Text("Select stressors", style: TextStyle(fontFamily: "Urbanist", fontSize: 30, fontWeight: FontWeight.w800, color: Color(0xFF4B4D4C)), textAlign: TextAlign.center,),
+              const SizedBox(height: 4,),
+              SizedBox( width: size.width/1.5,child: const Text("Our AI will generate how your stressors will impact your life in general. Select all that applies", style: TextStyle(fontFamily: "Urbanist", fontSize: 14, fontWeight: FontWeight.w600, color: Color(0xFF4B4D4C)), textAlign: TextAlign.center,)),
               const SizedBox(height: 50,),
-              mentalAssstmentWidget(SvgPicture.asset("assets/images/solid_heart.svg"), "I wanna reduce stress", 1, selectedIntValue),
-              mentalAssstmentWidget(SvgPicture.asset("assets/images/Solid robot.svg"), "I wanna try AI Therapy", 2, selectedIntValue),
-              mentalAssstmentWidget(SvgPicture.asset("assets/images/Solid flag.svg"), "I wanna track my mood", 3, selectedIntValue),
-              mentalAssstmentWidget(SvgPicture.asset("assets/images/Solid mood happy.svg"), "I want to be a better person", 4, selectedIntValue),
-              mentalAssstmentWidget(SvgPicture.asset("assets/images/Solid mobile.svg"), "Just trying out the app, mate!", 5, selectedIntValue),
+              mentalAssstmentWidget(SvgPicture.asset("assets/images/solid_heart.svg"), "Life", 1, selectedIntValue),
+              mentalAssstmentWidget(SvgPicture.asset("assets/images/Solid work.svg"), "Work", 2, selectedIntValue),
+              mentalAssstmentWidget(SvgPicture.asset("assets/images/Solid family.svg"), "Family & Friends", 3, selectedIntValue),
+              mentalAssstmentWidget(SvgPicture.asset("assets/images/Solid happy.svg"), "Kids", 4, selectedIntValue),
+              mentalAssstmentWidget(SvgPicture.asset("assets/images/Solid finance.svg"), "Finances", 5, selectedIntValue),
+              mentalAssstmentWidget(SvgPicture.asset("assets/images/Solid others.svg"), "Others", 6, selectedIntValue),
               
               const Spacer(),
               ElevatedButton(onPressed: (){}, child:  Row(
@@ -84,7 +88,7 @@ class _MentalAssessmentOneState extends State<MentalAssessmentOne> {
               borderRadius: BorderRadius.circular(1000),
               color: const Color(0xFFF6991A,).withOpacity(0.2),
             ),
-            child: const Center(child:  Text("SKIP", style: TextStyle(fontFamily: "Urbanist", fontSize: 12, fontWeight: FontWeight.w800, color: Color(0xFFF6991A),),)),
+            child: const Center(child:  Text("4 OF 5", style: TextStyle(fontFamily: "Urbanist", fontSize: 12, fontWeight: FontWeight.w800, color: Color(0xFFF6991A),),)),
           ),
         )
       ],

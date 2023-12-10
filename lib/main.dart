@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:stressless/config/app_theme.dart';
 import 'package:stressless/pages/onboarding/authentication_screen.dart';
+import 'package:stressless/pages/onboarding/loading_screen.dart';
+import 'package:stressless/pages/onboarding/mental_assessment_five.dart';
+import 'package:stressless/pages/onboarding/mental_assessment_four.dart';
 import 'package:stressless/pages/onboarding/mental_assessment_one.dart';
+import 'package:stressless/pages/onboarding/mental_assessment_six.dart';
 import 'package:stressless/pages/onboarding/mental_assessment_three.dart';
 import 'package:stressless/pages/onboarding/mental_assessment_two.dart';
 import 'package:stressless/pages/onboarding/onboarding_screen.dart';
@@ -19,7 +23,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeClass.lightTheme,
-      home:  const MentalAssessmentOne()
+      home:  const LoadingScreen()
     );
   }
 }
