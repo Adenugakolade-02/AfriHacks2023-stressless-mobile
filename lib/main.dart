@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stressless/config/app_theme.dart';
+import 'package:stressless/pages/home/home_screen.dart';
 import 'package:stressless/pages/onboarding/authentication_screen.dart';
 import 'package:stressless/pages/onboarding/loading_screen.dart';
 import 'package:stressless/pages/onboarding/mental_assessment_five.dart';
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeClass.lightTheme,
-      home:  const LoadingScreen()
+      home:  const HomeScreen()
     );
   }
 }
