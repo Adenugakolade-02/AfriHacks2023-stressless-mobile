@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:stressless/config/app_router.dart';
 import 'package:stressless/config/app_theme.dart';
 import 'package:stressless/locator.dart';
+import 'package:stressless/pages/home/home_page.dart';
 import 'package:stressless/pages/home/home_screen.dart';
 import 'package:stressless/pages/onboarding/authentication_screen.dart';
 import 'package:stressless/pages/onboarding/loading_screen.dart';
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeClass.lightTheme,
       onGenerateRoute: AppRouter.generateRoute,
       navigatorKey: serviceLocator<NavigatorService>().navigatorKey,
-      home:  const OnboardingScreen()
+      home:  const HomePage()
     );
   }
 }

@@ -45,8 +45,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 const SizedBox(height: 16,),
-                MentalHealthMetricSection(),
-                MentalHealthTrackerSection(),
+                const MentalHealthMetricSection(),
+                const MentalHealthTrackerSection(),
                 
               ],
             ),
