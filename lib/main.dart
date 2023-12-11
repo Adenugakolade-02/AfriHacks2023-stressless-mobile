@@ -10,6 +10,7 @@ import 'package:stressless/pages/onboarding/mental_assessment_six.dart';
 import 'package:stressless/pages/onboarding/mental_assessment_three.dart';
 import 'package:stressless/pages/onboarding/mental_assessment_two.dart';
 import 'package:stressless/pages/onboarding/onboarding_screen.dart';
+import 'package:stressless/pages/onboarding/stress_score_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeClass.lightTheme,
-      home:  const HomeScreen()
+      home:  const MentalAssesssmentThree()
     );
   }
 }
