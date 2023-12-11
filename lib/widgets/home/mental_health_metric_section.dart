@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class MentalHealthMetricSection extends StatelessWidget {
   const MentalHealthMetricSection({super.key});
@@ -112,9 +113,10 @@ class MentalHealthMetricSection extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                   const Row(
+                    Row(
                     children: [
-                      Icon(Icons.emoji_emotions,color:Color(0xFF111111), size: 14,),
+                      // Icon(Icons.emoji_emotions,color:Color(0xFF111111), size: 14,),
+                      SvgPicture.asset("assets/images/Solid sleep.svg", color: Color(0xFF111111), height: 14, width: 14, fit: BoxFit.scaleDown,),
                       const SizedBox(width: 4,),
                       Text("Sleep Quality", style: TextStyle(fontFamily: "Urbanist", fontSize: 12, fontWeight: FontWeight.w600, color: Color(0xFF111111)))
                     ],
@@ -140,9 +142,9 @@ class MentalHealthMetricSection extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                   const Row(
+                  Row(
                     children: [
-                      Icon(Icons.emoji_emotions,color:Color(0xFF111111), size: 14,),
+                      SvgPicture.asset("assets/images/Solid stress.svg", color: Color(0xFF111111), height: 14, width: 14, fit: BoxFit.scaleDown,),
                       const SizedBox(width: 4,),
                       Text("Stress Level", style: TextStyle(fontFamily: "Urbanist", fontSize: 12, fontWeight: FontWeight.w600, color: Color(0xFF111111)))
                     ],
