@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:stressless/locator.dart';
+import 'package:stressless/pages/onboarding/onboarding_view_model.dart';
+import 'package:stressless/utils/app_routes.dart';
 import 'package:stressless/utils/widget/custom_textfield.dart';
 
 class MentalAssessmentSix extends StatefulWidget {
@@ -10,6 +13,18 @@ class MentalAssessmentSix extends StatefulWidget {
 }
 
 class _MentalAssessmentSixState extends State<MentalAssessmentSix> {
+  final OnboardingViewModel model = serviceLocator<OnboardingViewModel>();
+
+  @override
+  void initState() {
+    model.mentalHealthController = TextEditingController();
+    super.initState();
+  }
+  @override
+  void dispose() {
+    model.mentalHealthController.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     Size size  = MediaQuery.of(context).size;
@@ -26,15 +41,15 @@ class _MentalAssessmentSixState extends State<MentalAssessmentSix> {
               const SizedBox(height: 6,),
               SizedBox( width: size.width/1.5,child: const Text("Freely write anything that’s on your mind here and it will be kept secret. Only our AI is listening...", style: TextStyle(fontFamily: "Urbanist", fontSize: 14, fontWeight: FontWeight.w600, color: Color(0xFF4B4D4C)), textAlign: TextAlign.center,)),
               const SizedBox(height: 50,),
-              LongFormField(controller: TextEditingController()),
+              LongFormField(controller: model.mentalHealthController),
               const SizedBox(height: 34,),
               dummyVoiceIcon(),
               // kTextFormField(title: "", prefixIcon: null, controller: TextEditingController(), maxLines: 10,),
               const Spacer(),
-              ElevatedButton(onPressed: (){}, child:  Row(
+              ElevatedButton(onPressed: model.submitHealthAssessment, child:  Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text("Continue"),
+                  const Text("Submit"),
                   const SizedBox(width: 8,),
                   SvgPicture.asset("assets/images/Monotone arrow right sm.svg")
                 ],
@@ -50,7 +65,7 @@ class _MentalAssessmentSixState extends State<MentalAssessmentSix> {
     return Row(
       children: [
         GestureDetector(
-          onTap: (){},
+          onTap: ()=>AppRoute.pop(),
           child: Container(
             height: 40,
             width: 40,
@@ -65,10 +80,10 @@ class _MentalAssessmentSixState extends State<MentalAssessmentSix> {
           ),
         ),
         const SizedBox(width: 12,),
-        const Text("Welcome Bolaji!", style: TextStyle(fontFamily: "Urbanist", fontSize: 20, fontWeight: FontWeight.w800, color: Color(0xFF4B4D4C)),),
+        const Text("Assessment", style: TextStyle(fontFamily: "Urbanist", fontSize: 20, fontWeight: FontWeight.w800, color: Color(0xFF4B4D4C)),),
         const Spacer(),
         GestureDetector(
-          onTap: (){},
+          onTap: ()=>AppRoute.pop(),
           child: Container(
             height: 30,
             width: 53,
@@ -76,7 +91,7 @@ class _MentalAssessmentSixState extends State<MentalAssessmentSix> {
               borderRadius: BorderRadius.circular(1000),
               color: const Color(0xFFF6991A,).withOpacity(0.2),
             ),
-            child: const Center(child:  Text("5 OF 5", style: TextStyle(fontFamily: "Urbanist", fontSize: 12, fontWeight: FontWeight.w800, color: Color(0xFFF6991A),),)),
+            child: const Center(child:  Text("6 OF 6", style: TextStyle(fontFamily: "Urbanist", fontSize: 12, fontWeight: FontWeight.w800, color: Color(0xFFF6991A),),)),
           ),
         )
       ],

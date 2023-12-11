@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:stressless/utils/app_routes.dart';
 
 class OnboardingScreen extends StatelessWidget {
   const OnboardingScreen({super.key});
@@ -30,7 +33,10 @@ class OnboardingScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 40,),
                   ElevatedButton(
-                    onPressed: (){}, 
+                    onPressed: (){
+                      log("Called here");
+                      AppRoute.go(AppRoute.authentication);
+                      }, 
                     child: const Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [

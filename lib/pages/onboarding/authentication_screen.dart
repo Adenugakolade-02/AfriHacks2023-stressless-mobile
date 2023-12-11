@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:stressless/locator.dart';
+import 'package:stressless/pages/onboarding/onboarding_view_model.dart';
 import 'package:stressless/widgets/onboarding/register_widget.dart';
 import 'package:stressless/widgets/onboarding/signin_widget.dart';
 
@@ -11,6 +13,8 @@ class AuthenticationScreen extends StatefulWidget {
 }
 
 class _AuthenticationScreenState extends State<AuthenticationScreen> {
+  final OnboardingViewModel model = serviceLocator<OnboardingViewModel>();
+  
   bool isSign = true;
   @override
   Widget build(BuildContext context) {

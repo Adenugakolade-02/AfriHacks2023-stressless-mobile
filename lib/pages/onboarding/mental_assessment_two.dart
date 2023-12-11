@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
+import 'package:stressless/locator.dart';
+import 'package:stressless/pages/onboarding/onboarding_view_model.dart';
+import 'package:stressless/utils/app_routes.dart';
 import 'package:stressless/widgets/onboarding/mood_slider_widget.dart';
 
 class MentalAssessmentTwo extends StatefulWidget {
@@ -10,36 +14,42 @@ class MentalAssessmentTwo extends StatefulWidget {
 }
 
 class _MentalAssessmentTwoState extends State<MentalAssessmentTwo> {
+  final OnboardingViewModel model = serviceLocator<OnboardingViewModel>();
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Column(
-          children: [
-            topHeader(),
-            const SizedBox(height: 32,),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              child: Text("How would you describe your mood", style: TextStyle(fontFamily: "Urbanist", fontSize: 30, fontWeight: FontWeight.w800, color: Color(0xFF4B4D4C)), textAlign: TextAlign.center,),
-            ),
-            const SizedBox(height: 48,),
-            const MoodSliderWidget(),
-            SizedBox(height: size.height*0.3,),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: ElevatedButton(onPressed: (){}, child:  Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text("Continue"),
-                  const SizedBox(width: 8,),
-                  SvgPicture.asset("assets/images/Monotone arrow right sm.svg")
-                ],
-              )),
-            )
-          ],
-        )
+    return ChangeNotifierProvider.value(
+      value: model,
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: SafeArea(
+          child: Column(
+            children: [
+              topHeader(),
+              const SizedBox(height: 32,),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                child: Text("How would you describe your mood", style: TextStyle(fontFamily: "Urbanist", fontSize: 30, fontWeight: FontWeight.w800, color: Color(0xFF4B4D4C)), textAlign: TextAlign.center,),
+              ),
+              const SizedBox(height: 48,),
+              const MoodSliderWidget(),
+              SizedBox(height: size.height*0.3,),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: ElevatedButton(
+                  onPressed: ()=>AppRoute.go(AppRoute.m3), 
+                  child:  Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text("Continue"),
+                    const SizedBox(width: 8,),
+                    SvgPicture.asset("assets/images/Monotone arrow right sm.svg")
+                  ],
+                )),
+              )
+            ],
+          )
+        ),
       ),
     );
   }
@@ -50,7 +60,7 @@ class _MentalAssessmentTwoState extends State<MentalAssessmentTwo> {
       child: Row(
         children: [
           GestureDetector(
-            onTap: (){},
+            onTap: ()=>AppRoute.pop(),
             child: Container(
               height: 40,
               width: 40,
@@ -76,7 +86,7 @@ class _MentalAssessmentTwoState extends State<MentalAssessmentTwo> {
                 borderRadius: BorderRadius.circular(1000),
                 color: const Color(0xFFF6991A,).withOpacity(0.2),
               ),
-              child: const Center(child:  Text("1 OF 5", style: TextStyle(fontFamily: "Urbanist", fontSize: 12, fontWeight: FontWeight.w800, color: Color(0xFFF6991A),),)),
+              child: const Center(child:  Text("2 OF 6", style: TextStyle(fontFamily: "Urbanist", fontSize: 12, fontWeight: FontWeight.w800, color: Color(0xFFF6991A),),)),
             ),
           )
         ],

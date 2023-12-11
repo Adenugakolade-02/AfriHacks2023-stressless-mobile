@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 
 class NavigatorService {
@@ -10,6 +12,7 @@ class NavigatorService {
   }
 
   Future<dynamic>? navigateTo(String routeName, {dynamic arguments}) {
+    log("called in Navigate to");
     return _navigatorKey.currentState?.pushNamed(routeName, arguments: arguments);
   }
 

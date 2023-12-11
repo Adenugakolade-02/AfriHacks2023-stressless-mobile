@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:stressless/locator.dart';
 import 'package:stressless/pages/home/home_screen.dart';
 import 'package:stressless/pages/onboarding/loading_screen.dart';
@@ -16,10 +18,11 @@ class AppRoute{
   static const m4 = "m4";
   static const m5 = "m5";
   static const m6 = "m6";
-  
+
 
 
   static Future go(String destination, { dynamic arguments, bool? pop, bool? popAll }) async {
+    log("called log here in go");
     if (pop == true) {
       return await serviceLocator<NavigatorService>().popNavigateTo(destination, arguments: arguments);
     } else if (popAll == true) {

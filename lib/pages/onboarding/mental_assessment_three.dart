@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
+import 'package:stressless/locator.dart';
+import 'package:stressless/pages/onboarding/onboarding_view_model.dart';
+import 'package:stressless/utils/app_routes.dart';
 import 'package:stressless/widgets/onboarding/sleep_slider_widget.dart';
 
 class MentalAssesssmentThree extends StatefulWidget {
@@ -10,7 +14,8 @@ class MentalAssesssmentThree extends StatefulWidget {
 }
 
 class _MentalAssesssmentThreeState extends State<MentalAssesssmentThree> {
-  int? selectedIntValue;
+  final OnboardingViewModel model = serviceLocator<OnboardingViewModel>();
+  // int? selectedIntValue;
   List<dynamic> sleepList = [
     ["assets/images/Solid mood overjoyed.svg","Excellent","7-9 hours"],
     ["assets/images/Solid mood happy_1.svg","Good","6-7 hours"],
@@ -21,29 +26,38 @@ class _MentalAssesssmentThreeState extends State<MentalAssesssmentThree> {
   @override
   Widget build(BuildContext context) {
      Size size  = MediaQuery.of(context).size;
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Column(
-            children: [
-              topHeader(),
-              const SizedBox(height: 32,),
-              const Text("How would you rate your sleep quality?", style: TextStyle(fontFamily: "Urbanist", fontSize: 30, fontWeight: FontWeight.w800, color: Color(0xFF4B4D4C)), textAlign: TextAlign.center,),
-              const SizedBox(height: 24,),
-              ...List.generate(5, (index) => mentalAssstmentWidget(sleepList[index][0], sleepList[index][1], sleepList[index][2], index, selectedIntValue)),
-              const Spacer(),
-              ElevatedButton(onPressed: (){}, child:  Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text("Continue"),
-                  const SizedBox(width: 8,),
-                  SvgPicture.asset("assets/images/Monotone arrow right sm.svg")
-                ],
-              ))
-            ],
-          ),
-        )
+    return ChangeNotifierProvider.value(
+      value: model,
+      child: Scaffold(
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Column(
+              children: [
+                topHeader(),
+                const SizedBox(height: 32,),
+                const Text("How would you rate your sleep quality?", style: TextStyle(fontFamily: "Urbanist", fontSize: 30, fontWeight: FontWeight.w800, color: Color(0xFF4B4D4C)), textAlign: TextAlign.center,),
+                const SizedBox(height: 24,),
+                Consumer<OnboardingViewModel>(
+                  builder: (_,model,__){
+                    return Column(
+                      children: List.generate(5, (index) => mentalAssstmentWidget(sleepList[index][0], sleepList[index][1], sleepList[index][2], index)),
+                    );
+                  }
+                ),
+                const Spacer(),
+                ElevatedButton(onPressed: ()=>AppRoute.go(AppRoute.m4), child:  Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text("Continue"),
+                    const SizedBox(width: 8,),
+                    SvgPicture.asset("assets/images/Monotone arrow right sm.svg")
+                  ],
+                ))
+              ],
+            ),
+          )
+        ),
       ),
     );
   }
@@ -53,7 +67,7 @@ class _MentalAssesssmentThreeState extends State<MentalAssesssmentThree> {
       child: Row(
         children: [
           GestureDetector(
-            onTap: (){},
+            onTap: ()=>AppRoute.pop(),
             child: Container(
               height: 40,
               width: 40,
@@ -79,7 +93,7 @@ class _MentalAssesssmentThreeState extends State<MentalAssesssmentThree> {
                 borderRadius: BorderRadius.circular(1000),
                 color: const Color(0xFFF6991A,).withOpacity(0.2),
               ),
-              child: const Center(child:  Text("2 OF 5", style: TextStyle(fontFamily: "Urbanist", fontSize: 12, fontWeight: FontWeight.w800, color: Color(0xFFF6991A),),)),
+              child: const Center(child:  Text("3 OF 6", style: TextStyle(fontFamily: "Urbanist", fontSize: 12, fontWeight: FontWeight.w800, color: Color(0xFFF6991A),),)),
             ),
           )
         ],
@@ -87,7 +101,7 @@ class _MentalAssesssmentThreeState extends State<MentalAssesssmentThree> {
     );
   }
 
-  Widget mentalAssstmentWidget(String svg, String title, String subtitle, int value, int? groupValue){
+  Widget mentalAssstmentWidget(String svg, String title, String subtitle, int value){
     return Padding(
       padding: const EdgeInsets.only(bottom: 12),
       child: Material(
@@ -112,20 +126,12 @@ class _MentalAssesssmentThreeState extends State<MentalAssesssmentThree> {
           ),
           dense: true,
           visualDensity: const VisualDensity(vertical: 4),
-          selected: groupValue == value,
-          onTap: (){
-            setState(() {
-              selectedIntValue = value;
-            });
-          },
+          selected: model.selectedSleepQualityValue == value,
+          onTap: ()=>model.selectSleepQuality(value),
           trailing: Radio(
             value: value,
-            groupValue: groupValue,
-            onChanged: (_){
-              setState(() {
-                selectedIntValue = _;
-              });
-            },
+            groupValue: model.selectedSleepQualityValue,
+            onChanged: model.selectSleepQuality,
             activeColor: const Color(0xFF4B4D4C),
           ),
         ),

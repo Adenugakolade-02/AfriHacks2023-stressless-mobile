@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:stressless/utils/app_routes.dart';
 
 class StressScoreScreen extends StatelessWidget {
   const StressScoreScreen({super.key});
@@ -77,7 +78,7 @@ class StressScoreScreen extends StatelessWidget {
                       backgroundColor: Colors.white,
                       foregroundColor: const Color(0xFF4B4D4C)
                     ),
-                    onPressed: (){}, 
+                    onPressed: ()=>AppRoute.go(AppRoute.homeScreen), 
                     child: const Text("Go to your Home page")
                     )
                 ],

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
+import 'package:stressless/locator.dart';
+import 'package:stressless/pages/onboarding/onboarding_view_model.dart';
 
 class MoodSliderWidget extends StatefulWidget {
   const MoodSliderWidget({super.key});
@@ -9,8 +12,9 @@ class MoodSliderWidget extends StatefulWidget {
 }
 
 class _MoodSliderWidgetState extends State<MoodSliderWidget> {
+  final OnboardingViewModel model = serviceLocator<OnboardingViewModel>();
   late PageController pageController;
-  int globalIndex = 0;
+  // int globalIndex = 0;
    List<dynamic> trial = [
     ["Overjoyed","assets/images/Solid mood overjoyed.svg"],
     ["Happy","assets/images/Solid mood happy_1.svg"],
@@ -33,21 +37,23 @@ class _MoodSliderWidgetState extends State<MoodSliderWidget> {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-    return SizedBox(
-      height: size.width/2,
-      width: double.infinity,
-      
-      child: PageView.builder(
-        itemCount: 5,
-        controller: pageController,
-        physics: const BouncingScrollPhysics(),
-        onPageChanged: (int index) => setState(() {
-          globalIndex = index;
-        }),
-        itemBuilder: (_,index){
-          return moodWidget(trial[index][0], trial[index][1], index);
-        }
-      ),
+    return Consumer<OnboardingViewModel>(
+      builder: (_,model,__) {
+        return SizedBox(
+          height: size.width/2,
+          width: double.infinity,
+          
+          child: PageView.builder(
+            itemCount: 5,
+            controller: pageController,
+            physics: const BouncingScrollPhysics(),
+            onPageChanged: model.selectMoodValue,
+            itemBuilder: (_,index){
+              return moodWidget(trial[index][0], trial[index][1], index);
+            }
+          ),
+        );
+      }
     );
   }
 
@@ -56,9 +62,9 @@ class _MoodSliderWidgetState extends State<MoodSliderWidget> {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        globalIndex==index ? Text(title, style: const TextStyle(fontFamily: "Urbanist", fontSize: 20, fontWeight: FontWeight.w800, color: Color(0xFF4B4D4C))) : Container(),
+        model.selectedMoodValue ==index ? Text(title, style: const TextStyle(fontFamily: "Urbanist", fontSize: 20, fontWeight: FontWeight.w800, color: Color(0xFF4B4D4C))) : Container(),
         const SizedBox(height: 16,),
-        globalIndex==index ? SizedBox(height: 112, width: 112,child: SvgPicture.asset(svg, fit: BoxFit.cover,),): SizedBox(height: 67, width: 67,child: SvgPicture.asset(svg, fit: BoxFit.scaleDown,),)
+        model.selectedMoodValue==index ? SizedBox(height: 112, width: 112,child: SvgPicture.asset(svg, fit: BoxFit.cover,),): SizedBox(height: 67, width: 67,child: SvgPicture.asset(svg, fit: BoxFit.scaleDown,),)
       ],
     );
   }
