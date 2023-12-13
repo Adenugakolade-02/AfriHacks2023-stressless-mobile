@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:stressless/pages/chat/chat_screen.dart';
 import 'package:stressless/pages/home/home_screen.dart';
+import 'package:stressless/pages/home/therapy_screen.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -51,14 +53,8 @@ class _HomePageState extends State<HomePage> {
       ),
       body: <Widget>[
         const HomeScreen(),
-        Container(
-          alignment: Alignment.center,
-          child: const Text('Chatbot'),
-        ),
-        Container(
-          alignment: Alignment.center,
-          child: const Text('Therapy'),
-        ),
+        const ChatScreen(),
+        const TherapyPremiumScreen(),
         Container(
           alignment: Alignment.center,
           child: const Text('Profile'),

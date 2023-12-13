@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:stressless/pages/home/home_page.dart';
 import 'package:stressless/pages/home/home_screen.dart';
+import 'package:stressless/pages/mental_assessment/mood_info.dart';
+import 'package:stressless/pages/mental_assessment/sleep_quality.dart';
+import 'package:stressless/pages/mental_assessment/stress_info.dart';
+import 'package:stressless/pages/mental_assessment/stressless_info.dart';
+import 'package:stressless/pages/onboarding/ai_recommendation_screen.dart';
 import 'package:stressless/pages/onboarding/authentication_screen.dart';
 import 'package:stressless/pages/onboarding/loading_screen.dart';
 import 'package:stressless/pages/onboarding/mental_assessment_five.dart';
@@ -18,7 +24,7 @@ class AppRouter{
       case AppRoute.authentication:
         return _buildRoute(const AuthenticationScreen());
       case AppRoute.homeScreen:
-        return _buildRoute(const HomeScreen());
+        return _buildRoute(const HomePage());
       case AppRoute.stressScore:
         return _buildRoute(const StressScoreScreen());
       case AppRoute.loadingScreen:
@@ -37,6 +43,16 @@ class AppRouter{
         return _buildRoute(const MentalAssessmentFive());
       case AppRoute.m6:
         return _buildRoute(const MentalAssessmentSix());
+      case AppRoute.aiRecommendationScreen:
+        return _buildRoute(const AiRecommendationScreen());
+      case  AppRoute.moodInfo:
+        return _buildRoute(const MoodInfo());
+      case AppRoute.sleepQualityInfo:
+        return _buildRoute(const SleepQualityInfo());
+      case AppRoute.stressLessInfo:
+        return _buildRoute(const StressLessInfo());
+      case AppRoute.stressInfo:
+        return _buildRoute(const StressInfo());
       default:
         return _buildRoute(const Scaffold(
           body: Center(child: Text('Invalid route reached.'),),

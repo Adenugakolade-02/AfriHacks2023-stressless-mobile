@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:stressless/locator.dart';
+import 'package:stressless/pages/onboarding/onboarding_view_model.dart';
+import 'package:stressless/utils/app_routes.dart';
 import 'package:stressless/utils/widget/custom_textfield.dart';
 
 class MentalLogPopUp extends StatefulWidget {
@@ -10,7 +13,9 @@ class MentalLogPopUp extends StatefulWidget {
 }
 
 class _MentalLogPopUpState extends State<MentalLogPopUp> {
+  final OnboardingViewModel model = serviceLocator<OnboardingViewModel>();
   int? selectedStressLevel;
+  int? selectedSleepQuality;
   int? selectedMood;
   late TextEditingController controller;
   List<dynamic> trial = [
@@ -26,6 +31,13 @@ class _MentalLogPopUpState extends State<MentalLogPopUp> {
     "You're good but you're tired",
     "You're stressed out",
     "You Are Exremely Stressed Out."
+  ];
+  List<dynamic> sleep = [
+    "You have less 2 hours of sleep",
+    "You have between 2 and 3 hours of sleep",
+    "You have between 4 and 5 hours of sleep",
+    "You have between 6 and 7 hours of sleep",
+    "You have 8hrs and above of sleep",
   ];
   @override
   void initState() {
@@ -56,7 +68,7 @@ class _MentalLogPopUpState extends State<MentalLogPopUp> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 5,),
+              const SizedBox(height: 16,),
               Center(
                 child: SizedBox(height: 10, width: 36, child: Divider(thickness: 5, color: Colors.black,),),
               ),
@@ -77,11 +89,21 @@ class _MentalLogPopUpState extends State<MentalLogPopUp> {
               const SizedBox(height: 2,),
               Center(child: Text("${selectedStressLevel==null ? "" : stressInfo[selectedStressLevel!-1]}", style: const TextStyle(fontFamily: "Urbanist", fontSize: 12, fontWeight: FontWeight.w500, color: Color(0xFF4B4D4C)),)),
               const SizedBox(height: 24,),
+              
+              const Text("Sleep Quality", style: TextStyle(fontFamily: "Urbanist", fontSize: 16, fontWeight: FontWeight.w800, color: Color(0xFF4B4D4C)),),
+              const SizedBox(height: 16,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: List.generate(5, (index) => sleepLevelContainer(index+1, selectedSleepQuality)),
+              ),
+              const SizedBox(height: 2,),
+              Center(child: Text("${selectedSleepQuality==null ? "" : sleep[selectedSleepQuality!-1]}", style: const TextStyle(fontFamily: "Urbanist", fontSize: 12, fontWeight: FontWeight.w500, color: Color(0xFF4B4D4C)),)),
+              const SizedBox(height: 24,),
               const Text("Mental Health Analysis", style: TextStyle(fontFamily: "Urbanist", fontSize: 16, fontWeight: FontWeight.w800, color: Color(0xFF4B4D4C)),),
               const SizedBox(height: 16,),
               LongFormField(controller: controller),
               const SizedBox(height: 34,),
-              ElevatedButton(onPressed: (){}, child:  Row(
+              ElevatedButton(onPressed: ()=>model.submitHealthAssessment(), child:  Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text("Log your mood"),
@@ -129,6 +151,25 @@ class _MentalLogPopUpState extends State<MentalLogPopUp> {
       onTap: (){
         setState(() {
           selectedStressLevel  = value;
+        });
+      },
+      child: Container(
+        height: 51,
+        width: 51,
+        decoration: BoxDecoration(
+          color: value==selectedValue? Color(0xFFC6FCDB): Colors.white,
+          shape: BoxShape.circle,
+          boxShadow: value==selectedValue? [BoxShadow(spreadRadius: 4,color: const Color(0xFFC6FCDB).withOpacity(0.4))] : null
+        ),
+      child: Center(child: Text("$value", style: TextStyle(fontFamily: "Urbanist", fontSize: 24, fontWeight: FontWeight.w800, color: Color(0xFF4B4D4C)),),),
+      ),
+    );
+  }
+  Widget sleepLevelContainer(value, selectedValue){
+    return InkWell(
+      onTap: (){
+        setState(() {
+          selectedSleepQuality  = value;
         });
       },
       child: Container(

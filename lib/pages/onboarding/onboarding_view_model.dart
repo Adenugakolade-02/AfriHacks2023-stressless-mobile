@@ -18,6 +18,82 @@ class OnboardingViewModel extends ChangeNotifier{
   int? selectedStressLevelValue;
   int? selectedStressorValue;
 
+  List<dynamic> aiRecommendation = [
+    {
+      "topic":"Reflect and Wind down",
+      "recommendation":[
+        "Take 10-15 minutes before bedtime to reflect on your day.",
+        "Write down any lingering thoughts or concerns in a journal.",
+        "Engage in calming activities, such as reading a book or practicing light stretching"
+      ]
+    },
+    {
+      "topic":"Reflect and Wind down",
+      "recommendation":[
+        "Take 10-15 minutes before bedtime to reflect on your day.",
+        "Write down any lingering thoughts or concerns in a journal.",
+        "Engage in calming activities, such as reading a book or practicing light stretching"
+      ]
+    },
+    {
+      "topic":"Reflect and Wind down",
+      "recommendation":[
+        "Take 10-15 minutes before bedtime to reflect on your day.",
+        "Write down any lingering thoughts or concerns in a journal.",
+        "Engage in calming activities, such as reading a book or practicing light stretching"
+      ]
+    },
+    {
+      "topic":"Reflect and Wind down",
+      "recommendation":[
+        "Take 10-15 minutes before bedtime to reflect on your day.",
+        "Write down any lingering thoughts or concerns in a journal.",
+        "Engage in calming activities, such as reading a book or practicing light stretching"
+      ]
+    },
+    {
+      "topic":"Reflect and Wind down",
+      "recommendation":[
+        "Take 10-15 minutes before bedtime to reflect on your day.",
+        "Write down any lingering thoughts or concerns in a journal.",
+        "Engage in calming activities, such as reading a book or practicing light stretching"
+      ]
+    },
+    {
+      "topic":"Reflect and Wind down",
+      "recommendation":[
+        "Take 10-15 minutes before bedtime to reflect on your day.",
+        "Write down any lingering thoughts or concerns in a journal.",
+        "Engage in calming activities, such as reading a book or practicing light stretching"
+      ]
+    },
+    {
+      "topic":"Reflect and Wind down",
+      "recommendation":[
+        "Take 10-15 minutes before bedtime to reflect on your day.",
+        "Write down any lingering thoughts or concerns in a journal.",
+        "Engage in calming activities, such as reading a book or practicing light stretching"
+      ]
+    },
+    {
+      "topic":"Reflect and Wind down",
+      "recommendation":[
+        "Take 10-15 minutes before bedtime to reflect on your day.",
+        "Write down any lingering thoughts or concerns in a journal.",
+        "Engage in calming activities, such as reading a book or practicing light stretching"
+      ]
+    },
+    {
+      "topic":"Reflect and Wind down",
+      "recommendation":[
+        "Take 10-15 minutes before bedtime to reflect on your day.",
+        "Write down any lingering thoughts or concerns in a journal.",
+        "Engage in calming activities, such as reading a book or practicing light stretching"
+      ]
+    },
+    
+  ];
+
   void signIn(){
     AppRoute.go(AppRoute.m1);
   }

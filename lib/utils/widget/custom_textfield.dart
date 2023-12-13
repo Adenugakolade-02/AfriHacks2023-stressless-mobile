@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 // ignore: must_be_immutable
 class kTextFormField extends StatefulWidget {
@@ -108,6 +109,37 @@ class _LongFormFieldState extends State<LongFormField> {
       controller: widget.controller,
       maxLength: 250,
       maxLines: 6,
+
+    );
+  }
+}
+
+class KeyboardFormField extends StatelessWidget {
+  const KeyboardFormField({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      decoration: InputDecoration(
+      enabledBorder:  OutlineInputBorder(
+        borderRadius: BorderRadius.circular(8),
+        borderSide: const BorderSide(
+          color: Color(0xFFF7F4F2),
+          width: 1,
+      )
+    ),
+      focusedBorder:   OutlineInputBorder(
+        borderRadius: BorderRadius.circular(8),
+        borderSide: const BorderSide(
+          color: Color(0xFFF7F4F2),
+          width: 1
+        )
+      ),
+      prefixIcon: SvgPicture.asset("assets/images/solid mic.svg",height: 20, width: 20, fit: BoxFit.scaleDown,),
+      hintText: "Type to start chatting...",
+      hintStyle: const TextStyle(fontFamily: "Urbanist", fontSize: 20, fontWeight: FontWeight.w600, color: Color(0xFFC9C7C5)),
+      ),
+      cursorColor: const Color(0xFFC9EBDF),
 
     );
   }

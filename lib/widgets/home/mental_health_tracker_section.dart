@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:stressless/utils/app_routes.dart';
 import 'package:stressless/widgets/home/mental_log_pop_up.dart';
 
 class MentalHealthTrackerSection extends StatelessWidget {
@@ -14,13 +15,13 @@ class MentalHealthTrackerSection extends StatelessWidget {
         const Text("Mental Health Metrics", style: TextStyle(fontFamily: "Urbanist", fontSize: 16, fontWeight: FontWeight.w800, color: Color(0xFF4B4D4C)),),
         const SizedBox(height: 16,),
         const SizedBox(height: 16,),
-        trackerCard("assets/images/Solid mood happy_1.svg", Color(0xFFFFCE5C), "Mood Tracker", "Your mood is always on the low during the week", (){
-          showDialog(context: context, builder: (_){return MentalLogPopUp();});
-        }),
+        trackerCard("assets/images/Solid mood happy_1.svg", const Color(0xFFFFCE5C), "Mood Tracker", "Your mood is always on the low during the week", ()=>AppRoute.go(AppRoute.moodInfo)),
+        // showDialog(context: context, builder: (_){return MentalLogPopUp();});}
+        // AppRoute.go(AppRoute.moodInfo)
         const SizedBox(height: 16,),
-        trackerCard("assets/images/Solid stress.svg", const Color(0xFFC9A7FF), "Stress Level", "Level 3 - Normal", () => null),
+        trackerCard("assets/images/Solid stress.svg", const Color(0xFFC9A7FF), "Stress Level", "Level 3 - Normal",()=>AppRoute.go(AppRoute.stressInfo)),
         const SizedBox(height: 16,),
-        trackerCard("assets/images/Solid sleep.svg", const Color(0xFF75DAFF), "Sleep Quality", "~ 4h Avg - Poor and Irregular", () => null),
+        trackerCard("assets/images/Solid sleep.svg", const Color(0xFF75DAFF), "Sleep Quality", "~ 4h Avg - Poor and Irregular", () => AppRoute.go(AppRoute.sleepQualityInfo)),
       ],
     );
   }

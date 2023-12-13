@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:stressless/utils/date_formatter.dart';
 import 'package:stressless/widgets/home/mental_health_metric_section.dart';
 import 'package:stressless/widgets/home/mental_health_tracker_section.dart';
+import 'package:stressless/widgets/home/mental_log_pop_up.dart';
 import 'package:stressless/widgets/home/mood_status.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -14,6 +15,11 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    Future.delayed(const Duration(seconds: 5)).then((value) => showDialog(context: context, builder: (_){return const MentalLogPopUp();}));
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,7 +53,17 @@ class _HomeScreenState extends State<HomeScreen> {
                 const SizedBox(height: 16,),
                 const MentalHealthMetricSection(),
                 const MentalHealthTrackerSection(),
-                
+                const SizedBox(height: 48,),
+                Container(
+                  height: 177,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12)
+                  ),
+                  width: double.infinity,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: SvgPicture.asset("assets/images/therapist page.svg", fit: BoxFit.cover)),
+                )
               ],
             ),
           ),

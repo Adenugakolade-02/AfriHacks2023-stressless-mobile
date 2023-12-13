@@ -2,6 +2,11 @@ import 'dart:developer';
 
 import 'package:stressless/locator.dart';
 import 'package:stressless/pages/home/home_screen.dart';
+import 'package:stressless/pages/mental_assessment/mood_info.dart';
+import 'package:stressless/pages/mental_assessment/sleep_quality.dart';
+import 'package:stressless/pages/mental_assessment/stress_info.dart';
+import 'package:stressless/pages/mental_assessment/stressless_info.dart';
+import 'package:stressless/pages/onboarding/ai_recommendation_screen.dart';
 import 'package:stressless/pages/onboarding/loading_screen.dart';
 import 'package:stressless/pages/onboarding/onboarding_screen.dart';
 import 'package:stressless/services/navigation_service.dart';
@@ -18,6 +23,11 @@ class AppRoute{
   static const m4 = "m4";
   static const m5 = "m5";
   static const m6 = "m6";
+  static const aiRecommendationScreen = "aiRecommendationScreen";
+  static const moodInfo = "moodInfo";
+  static const sleepQualityInfo = "sleepQualityInfo";
+  static const stressLessInfo = "stressLessInfo";
+  static const stressInfo = "stressInfo";
 
 
 

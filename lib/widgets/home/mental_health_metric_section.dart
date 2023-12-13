@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:stressless/utils/app_routes.dart';
 
 class MentalHealthMetricSection extends StatelessWidget {
   const MentalHealthMetricSection({super.key});
@@ -18,55 +19,58 @@ class MentalHealthMetricSection extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Container(
-              height: 170,
-              width: size.width/2 -20,
-              padding: EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: const Color(0xFFC6FCDB),
-                borderRadius: BorderRadius.circular(15)
-              ),
-              child: Column(
-                children: [
-                  const Row(
-                    children: [
-                      Icon(Icons.favorite,color: Color(0xFF111111), size: 14,),
-                      const SizedBox(width: 4,),
-                      Text("StressLess score", style: TextStyle(fontFamily: "Urbanist", fontSize: 12, fontWeight: FontWeight.w600, color: Color(0xFF111111)))
-                    ],
-                  ),
-                  const SizedBox(height: 12,),
-                  Center(
-                    child: Stack(
+            GestureDetector(
+              onTap: ()=> AppRoute.go(AppRoute.stressLessInfo),
+              child: Container(
+                height: 170,
+                width: size.width/2 -20,
+                padding: EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: const Color(0xFFC6FCDB),
+                  borderRadius: BorderRadius.circular(15)
+                ),
+                child: Column(
+                  children: [
+                    const Row(
                       children: [
-                        Center(
-                          child: SizedBox(
-                            height: 120,
-                            width: 120,
-                            child: const CircularProgressIndicator(
-                              color: const Color(0xFF111111),
-                              backgroundColor: Color(0xFFAFAFAF),
-                              value: 0.5,
-                              strokeWidth: 5,
+                        Icon(Icons.favorite,color: Color(0xFF111111), size: 14,),
+                        const SizedBox(width: 4,),
+                        Text("StressLess score", style: TextStyle(fontFamily: "Urbanist", fontSize: 12, fontWeight: FontWeight.w600, color: Color(0xFF111111)))
+                      ],
+                    ),
+                    const SizedBox(height: 12,),
+                    Center(
+                      child: Stack(
+                        children: [
+                          Center(
+                            child: SizedBox(
+                              height: 120,
+                              width: 120,
+                              child: const CircularProgressIndicator(
+                                color: const Color(0xFF111111),
+                                backgroundColor: Color(0xFFAFAFAF),
+                                value: 0.5,
+                                strokeWidth: 5,
+                              ),
                             ),
                           ),
-                        ),
-                        Positioned(
-                          right: size.width/5.5-5,
-                          top: 38,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text("50", style: TextStyle(fontFamily: "Urbanist", fontSize: 20, fontWeight: FontWeight.w700, color: Color(0xFF000000)),),
-                              Text("Healthy", style: TextStyle(fontFamily: "Urbanist", fontSize: 10, fontWeight: FontWeight.w500, color: Color(0xFF4B4D4C)),),
-                            ],
-                          )
-                          )
-                      ],
+                          Positioned(
+                            right: size.width/5.5-5,
+                            top: 38,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text("50", style: TextStyle(fontFamily: "Urbanist", fontSize: 20, fontWeight: FontWeight.w700, color: Color(0xFF000000)),),
+                                Text("Healthy", style: TextStyle(fontFamily: "Urbanist", fontSize: 10, fontWeight: FontWeight.w500, color: Color(0xFF4B4D4C)),),
+                              ],
+                            )
+                            )
+                        ],
+                      )
                     )
-                  )
-                ],
-              )
+                  ],
+                )
+              ),
             ),
             Container(
               height: 170,
@@ -87,7 +91,7 @@ class MentalHealthMetricSection extends StatelessWidget {
                   ),
                   const SizedBox(height: 6,),
                   const SizedBox(width: 4,),
-                  Text("Mood", style: TextStyle(fontFamily: "Urbanist", fontSize: 15, fontWeight: FontWeight.w700, color: Color(0xFF111111))),
+                  const Text("Neutral", style: TextStyle(fontFamily: "Urbanist", fontSize: 15, fontWeight: FontWeight.w700, color: Color(0xFF111111))),
                   const SizedBox(height: 6,),
                   SizedBox(
                     height: 110,
@@ -183,7 +187,7 @@ class MentalHealthMetricSection extends StatelessWidget {
         x: index,
         barRods: [
           BarChartRodData(
-            toY: Random().nextInt(5).toDouble(),
+            toY: Random().nextInt(6).toDouble(),
             width: 5,
             borderRadius: BorderRadius.circular(5),
             color: const Color(0xFF111111),
@@ -210,7 +214,7 @@ class MentalHealthMetricSection extends StatelessWidget {
           minY: 0,
           lineBarsData: [
             LineChartBarData(
-              spots: List.generate(14, (index) => FlSpot(index.toDouble(),Random().nextInt(5).toDouble())),
+              spots: List.generate(14, (index) => FlSpot(index.toDouble(),Random().nextInt(6).toDouble())),
               isCurved: true,
               dotData: const FlDotData(
                 show: false

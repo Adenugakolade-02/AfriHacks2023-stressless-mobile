@@ -63,7 +63,7 @@ class StressScoreScreen extends StatelessWidget {
                   ),
                   const Spacer(),
                   ElevatedButton(
-                    onPressed: (){}, 
+                    onPressed: ()=>AppRoute.go(AppRoute.aiRecommendationScreen), 
                     child: const Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
